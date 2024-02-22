@@ -2,6 +2,7 @@ package map_repository
 
 import (
 	"fmt"
+
 	"github.com/google/uuid"
 
 	"HttpS/service/entity"
@@ -27,7 +28,7 @@ func (m *mapRepository) CreateFriend(in entity.Friend) (string, error) {
 	return id, nil
 }
 
-func (m *mapRepository) MakeFreind(in1, in2 string) (string, string, error) {
+func (m *mapRepository) MakeFriend(in1, in2 string) (string, string, error) {
 	friend1, ok := m.storage[in1]
 	if !ok {
 		return "", "", fmt.Errorf("user don't exist id=%s", in1)
@@ -48,7 +49,7 @@ func (m *mapRepository) MakeFreind(in1, in2 string) (string, string, error) {
 	return friend1.Name, friend2.Name, nil
 }
 
-func (m *mapRepository) Deletefriend(in string) (string, error) {
+func (m *mapRepository) DeleteFriend(in string) (string, error) {
 	friend, ok := m.storage[in]
 	if !ok {
 		return "", fmt.Errorf("user don't exist id=%s", in)
@@ -58,7 +59,7 @@ func (m *mapRepository) Deletefriend(in string) (string, error) {
 	return friend.Name, nil
 }
 
-func (m *mapRepository) Getfriends(in string) ([]entity.Friend, error) {
+func (m *mapRepository) GetFriends(in string) ([]entity.Friend, error) {
 	friend, ok := m.storage[in]
 	if !ok {
 		return nil, fmt.Errorf("user don't exist id=%s", in)
